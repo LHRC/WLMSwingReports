@@ -5,8 +5,8 @@
  */
 package wlmswingreports;
 
+import java.awt.Color;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -20,33 +20,46 @@ public class WLMSwingReports {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            javax.swing.SwingUtilities.invokeLater( 
-           new Runnable()
-           {
-             public void run()
-             {
-               if (login())
-               {
-                 //Session.initiateTheoreticalCountMap();
-                 createAndShowGUI();
-               }
-               else
-               {
-                 JOptionPane.showMessageDialog(null, "Invalid Login");
-                 System.exit(0);
-                 //return;
-               }
-             }
-           } );
-    }
-   
-    private static Boolean login(){
-        return Boolean.TRUE;
+
+        if(login()){
+            createAndShowGUI();
+        }
     }
     
    public static void createAndShowGUI()
+   {
+    setLookAndFeel();
+    //MainFrame mf = new MainFrame();
+    JFrame mainFrame = new MainFrame();
+    //mainFrame.setSize(1200, 900);
+    //mainFrame.setMinimumSize(new Dimension(1200, 900));
+    mainFrame.setBackground(Color.yellow);
+    mainFrame.setVisible(true);
+    //mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //mf.setVisible(true);
+    //JPanel mainPanel = new JPanel();
+    //mainPanel.setSize(800, 600);
+    //mainPanel.setBackground(Color.red);
+    //mainFrame.add(mainPanel);
+    //mainPanel.setVisible(true);
+   }
+   
+     private static boolean login()
   {
-    
+      return Boolean.TRUE;
+//    if (ApplicationData.REQUIRE_LOGIN == false)
+//    {
+//      Session.MAJOR_CATEGORY_ID = 1;
+//      return true;
+//    }
+//    else
+//    {
+//      LoginDialog ld = new LoginDialog();
+//      return (Session.AUTHENTICATED); // && checkEnvironment()) ;
+//    }
+  }
+   
+   private static void setLookAndFeel(){
     try
     {
       //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -68,9 +81,5 @@ public class WLMSwingReports {
     {
       ex.printStackTrace();
     }
-    //checkUpdate();
-    MainFrame mf = new MainFrame();
-    mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mf.setVisible(true);
-  }
+   }
 }
