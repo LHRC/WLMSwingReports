@@ -5,6 +5,12 @@
  */
 package wlmswingreports;
 
+import java.awt.Dimension;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author mdonovan
@@ -88,7 +94,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(salesMenu);
 
         purchaseMenu.setText("Purchases");
-        purchaseMenu.setActionCommand("Purchases");
 
         invoices.setText("Invoices");
         invoices.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +135,18 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void countSheetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countSheetActionPerformed
-        
+        try {
+            JInternalFrame jif = new JInternalFrame("Internal Frame");
+            jif.setSize(700, 500);
+            jif.setMinimumSize(new Dimension(700, 500));
+            //jif.setMaximum(true);
+            jif.setMaximizable(true);
+            jif.setVisible(true);
+            add(jif);
+            jif.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_countSheetActionPerformed
 
     private void inventoryExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryExtensionActionPerformed

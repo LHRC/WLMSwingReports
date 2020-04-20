@@ -53,7 +53,6 @@
         <Menu class="javax.swing.JMenu" name="purchaseMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Purchases"/>
-            <Property name="actionCommand" type="java.lang.String" value="Purchases"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="invoices">
