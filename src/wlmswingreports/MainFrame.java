@@ -150,14 +150,15 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_countSheetActionPerformed
 
     private void inventoryExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryExtensionActionPerformed
-        try {
             ReportsInventoryExtensionFrame rief = new ReportsInventoryExtensionFrame();
-            rief.setVisible(true);
-            add(rief);
-            rief.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            ReportsInventoryExtensionFrame rief = new ReportsInventoryExtensionFrame();
+//            rief.setVisible(true);
+//            add(rief);
+//            rief.setMaximum(true);
+//        } catch (PropertyVetoException ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_inventoryExtensionActionPerformed
 
     private void productLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productLocationsActionPerformed

@@ -67,7 +67,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 
   private void getParameters()
   {
-    params.put("INVENTORY_DATE", LocalDate.now());
+    params.put("INVENTORY_DATE", LocalDate.now().toString());
     params.put("BUSINESS_NAME", "LHRC");
     params.put("CATEGORY_NAME", "Wine");
   }
