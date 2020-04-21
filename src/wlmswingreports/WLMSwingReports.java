@@ -24,6 +24,9 @@ public class WLMSwingReports {
         if(login()){
             createAndShowGUI();
         }
+        else{
+            System.out.println("nope");
+        }
     }
     
    public static void createAndShowGUI()
@@ -49,7 +52,8 @@ public class WLMSwingReports {
 
       LoginDialog ld = new LoginDialog();
       //return (Session.AUTHENTICATED); // && checkEnvironment()) ;
-      return true;
+      //return true;
+      return SessionManager.getIsAuthenticated();
   }
    
    private static void setLookAndFeel(){

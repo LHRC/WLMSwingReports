@@ -6,9 +6,6 @@ package wlmswingreports;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -26,8 +23,6 @@ import javax.swing.JTextField;
 
 public class LoginDialog
 {
-
-  private Vector<Category> categories = new Vector();
   JFrame parent = new JFrame("Log In");
   String title;
   JDialog jd;
@@ -62,29 +57,7 @@ public class LoginDialog
     /////TODO
     //add login validation here
     
-//    title = "Log in to Inventory System";
-//    jd = new JDialog(parent, title, true);
-//    //getCategories();
-//    categoryBox = new JComboBox(categories);
-//    jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//    WindowListener wl = (WindowListener) new myWindowListener();
-//    jd.addWindowListener(wl);
-////    namePanel.add(new JLabel("User Name:"));
-////    namePanel.add(nameField);
-////    passwordPanel.add(new JLabel("Password: "));
-////    passwordPanel.add(passwordField);
-//    buttonPanel.add(categoryBox);
-//    buttonPanel.add(login);
-//    buttonPanel.add(cancel);
-//    login.addActionListener(al);
-//    cancel.addActionListener(al);
-//    buttonPanel.setVisible(true);
-//    jd.getContentPane().add(namePanel, BorderLayout.NORTH);
-//    jd.getContentPane().add(passwordPanel, BorderLayout.CENTER);
-//    jd.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
-//    jd.pack();
-//    jd.setLocationRelativeTo(null);
-//    jd.setVisible(true);
+
   } /** End method LoginDialog */
   
 
@@ -93,13 +66,7 @@ public class LoginDialog
      LocationChooser lc = new LocationChooser();
      lc.setVisible(true);
    }
-   private void categoryBoxActionPerformed(java.awt.event.ActionEvent evt)
-   {
-     JComboBox jcb = (JComboBox) evt.getSource();
-     Category cat = (Category) jcb.getSelectedItem();
-    // Session.MAJOR_CATEGORY_ID = cat.getId();
-     //Session.MAJOR_CATEGORY_NAME = cat.getName();
-   }   
+
    
 //     private void getCategories()
 //    {   
@@ -143,15 +110,6 @@ public class LoginDialog
     private void authenticateUser()
     {
        String pass = new String(passwordField.getPassword());
-       //TODO change to real authentication
-//       if (nameField.getText().equalsIgnoreCase("admin") && pass.equalsIgnoreCase("password"))
-//       {
-        // Session.AUTHENTICATED = true;       
-//       }
-//       else
-//       {
-//         Session.AUTHENTICATED = false;
-//       }
     } // end authenticate user
     
   } // end myActionListener
@@ -180,40 +138,5 @@ public class LoginDialog
     {
       return categoryName;
     }
-  }
-          
-  private class myWindowListener implements WindowListener
-  {
-
-    public void windowOpened(WindowEvent e)
-    {
-    }
-
-    public void windowClosing(WindowEvent e)
-    {
-      System.exit(0);
-    }
-
-    public void windowClosed(WindowEvent e)
-    {
-    }
-
-    public void windowIconified(WindowEvent e)
-    {
-    }
-
-    public void windowDeiconified(WindowEvent e)
-    {
-    }
-
-    public void windowActivated(WindowEvent e)
-    {
-    }
-
-    public void windowDeactivated(WindowEvent e)
-    {
-    }
-    
-  }
-
+  }         
 }

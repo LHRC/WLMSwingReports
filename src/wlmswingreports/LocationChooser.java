@@ -81,10 +81,10 @@ public class LocationChooser extends javax.swing.JDialog
         locationBox = new javax.swing.JComboBox(locations);
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        userNameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,13 +103,13 @@ public class LocationChooser extends javax.swing.JDialog
 
         jLabel1.setText("Restaurant");
 
-        jTextField1.setToolTipText("");
+        userNameTextField.setToolTipText("");
 
         jLabel2.setText("User Name");
 
         jLabel3.setText("Password");
 
-        jPasswordField1.setToolTipText("");
+        passwordField.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,10 +123,10 @@ public class LocationChooser extends javax.swing.JDialog
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(locationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,11 +139,11 @@ public class LocationChooser extends javax.swing.JDialog
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -157,12 +157,22 @@ public class LocationChooser extends javax.swing.JDialog
      SessionManager.Restaurant selectedRestaurant = (SessionManager.Restaurant) locationBox.getSelectedItem();
     //Session.configFileName = path + selectedRestaurant.fileName;
     //ApplicationData.readConfigurationFile();
+    String user = userNameTextField.getText().trim();
+    String password = new String(passwordField.getPassword());
+      System.out.println(user +  " " + password);
+    if(selectedRestaurant.validateRestaurantLogin(user, password)){
+        SessionManager.setIsAuthenticated(Boolean.TRUE);
+    }
+    else{
+        SessionManager.setIsAuthenticated(Boolean.FALSE);
+    }
     this.dispose();
     //this.setVisible(false);
   }//GEN-LAST:event_jButton1ActionPerformed
 
 private void locationBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationBoxActionPerformed
     SessionManager.Restaurant selectedRestaurant = (SessionManager.Restaurant) locationBox.getSelectedItem();
+    SessionManager.setActiveRestaurant(selectedRestaurant);
    //Session.configFileName = path + selectedRestaurant.fileName;
    //ApplicationData.readConfigurationFile();
 }//GEN-LAST:event_locationBoxActionPerformed
@@ -194,9 +204,9 @@ private void locationBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox locationBox;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField userNameTextField;
     // End of variables declaration//GEN-END:variables
   
 }

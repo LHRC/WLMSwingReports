@@ -104,6 +104,7 @@ public class SessionManager {
                           || (this.appUser.equals(u.trim()) && this.appPassword.equals(p) )
                        );
             }
+            
             public String toString(){
                 return getRestaurantName();
             }
