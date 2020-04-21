@@ -46,17 +46,10 @@ public class WLMSwingReports {
    
      private static boolean login()
   {
-      return Boolean.TRUE;
-//    if (ApplicationData.REQUIRE_LOGIN == false)
-//    {
-//      Session.MAJOR_CATEGORY_ID = 1;
-//      return true;
-//    }
-//    else
-//    {
-//      LoginDialog ld = new LoginDialog();
-//      return (Session.AUTHENTICATED); // && checkEnvironment()) ;
-//    }
+
+      LoginDialog ld = new LoginDialog();
+      //return (Session.AUTHENTICATED); // && checkEnvironment()) ;
+      return true;
   }
    
    private static void setLookAndFeel(){

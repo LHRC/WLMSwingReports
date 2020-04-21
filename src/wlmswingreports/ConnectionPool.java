@@ -13,6 +13,7 @@ import com.mchange.v2.c3p0.*;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import wlmswingreports.SessionManager.Restaurant;
 //import winelistmanager.SessionManager.Restaurant;
 
 public class ConnectionPool {
@@ -34,28 +35,28 @@ public class ConnectionPool {
     }
 
     // TODO - not complete implementation
-//    public void connect(Restaurant r){
-//        try {
-//            String user = r.getDBUser() == null ? "inventory" : r.getDBUser();
-//            String password = r.getDBPassword() == null ? "1261brg" : r.getDBPassword();
-//            cpds.setDriverClass( "org.postgresql.Driver" );
-//            //loads the jdbc driver
-//            //cpds.setJdbcUrl( "jdbc:postgresql://127.0.0.1/inventory" ); 
-//            cpds.setJdbcUrl( "jdbc:postgresql://" + r.getRestaurantDatabaseIPAddress() + "/" + r.getDbName() ); 
-//            if (r.getReadOnly()){
-//                // read only access
-//                cpds.setUser("postgres"); 
-//                cpds.setPassword("1261brg"); 
-//            }else{
-//                // read / write access
-//                cpds.setUser(user); 
-//                cpds.setPassword(password);
-//            }
-//        } catch (PropertyVetoException ex) {
-//            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    public void connect(Restaurant r){
+        try {
+            String user = r.getDBUser() == null ? "inventory" : r.getDBUser();
+            String password = r.getDBPassword() == null ? "1261brg" : r.getDBPassword();
+            cpds.setDriverClass( "org.postgresql.Driver" );
+            //loads the jdbc driver
+            //cpds.setJdbcUrl( "jdbc:postgresql://127.0.0.1/inventory" ); 
+            cpds.setJdbcUrl( "jdbc:postgresql://" + r.getRestaurantDatabaseIPAddress() + "/" + r.getDbName() ); 
+            if (r.getReadOnly()){
+                // read only access
+                //cpds.setUser("postgres"); 
+                //cpds.setPassword("1261brg"); 
+            }else{
+                // read / write access
+                cpds.setUser(user); 
+                cpds.setPassword(password);
+            }
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
     
     public ComboPooledDataSource getComboPooledDataSource(){
         

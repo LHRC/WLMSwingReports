@@ -39,7 +39,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
     public ReportsInventoryExtensionFrame()
     {
       //super(mit);
-      getClearanceOnly();
+      //getClearanceOnly();
       getInventoryDate();
       getReportData();
       getParameters();
@@ -79,7 +79,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 //    JasperReport jasperReport =
 //        JasperCompileManager.compileReport(reportSource);
 //    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
-    File cr = new File(getClass().getClassLoader().getResource("InventoryExtensionReport.jasper").getFile());
+    File cr = new File(getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper").getFile());
 //    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
 //            loadObject(new File(compiledReport));
     JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.

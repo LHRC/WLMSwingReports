@@ -6,7 +6,6 @@
 
 package wlmswingreports;
 
-import java.io.File;
 import java.util.Vector;
 
 
@@ -16,70 +15,32 @@ import java.util.Vector;
  */
 public class LocationChooser extends javax.swing.JDialog
 {
-  private Vector<ConfigFile> locations = new Vector();
-  String path = "";
-  String fileName = "lib/locations.txt";
+  //private ArrayList<SessionManager.Restaurant> locations = (ArrayList<SessionManager.Restaurant>) SessionManager.getRestaurants();
+  private Vector locations = new Vector(SessionManager.getRestaurants());
+//private Vector<ConfigFile> locations = new Vector();
+
   
   /** Creates new form UserChooser */
   public LocationChooser(java.awt.Frame parent, boolean modal)
   {
     super(parent, modal);
-    if ( ! localFileExists())
-      path =  "C:/InvBgService/";
-    getLocations();
+    //getLocations();
     initComponents();
   }
   public LocationChooser()
   {
     super(new java.awt.Frame(), true);
-      if ( ! localFileExists())
-    path =  "C:/InvBgService/";
-    getLocations();
+
     initComponents();
   }
 
   public LocationChooser(String title) 
   {
-    super(new java.awt.Frame(),title, true);
-    if ( ! localFileExists())
-      path =  "C:/InvBgService/";    
-    getLocations();
+    super(new java.awt.Frame(),title, true);  
+
     initComponents();
   }
   
-  private boolean localFileExists()
-  {
-    File f = new File(fileName);
-    return f.exists();
-  }
-  
-   public void getLocations()
-   {
-//    Vector<ConfigFile> cFiles = new Vector();
-//    try
-//    {
-//      //ConfigurationFileReader cf = new ConfigurationFileReader(new File(path + fileName));
-//      TreeMap tm = cf.getAll();
-//      Iterator iter = tm.entrySet().iterator();
-//      while (iter.hasNext())
-//      {
-//        Map.Entry entry = (Map.Entry) iter.next();
-//        cFiles.add(new ConfigFile(entry.getKey().toString(), entry.getValue().toString()));
-//      }
-//    }
-//    catch (FileNotFoundException ex)
-//    {
-//      ex.printStackTrace();
-//    }
-//    catch (IOException ex)
-//    {
-//      ex.printStackTrace();
-//    }
-//    finally
-//    {
-//      locations = cFiles;
-//    }
-   }
   
   public String getSelectedLocationName()
   {
@@ -120,6 +81,10 @@ public class LocationChooser extends javax.swing.JDialog
         locationBox = new javax.swing.JComboBox(locations);
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -136,7 +101,15 @@ public class LocationChooser extends javax.swing.JDialog
             }
         });
 
-        jLabel1.setText("Please Select a Location");
+        jLabel1.setText("Restaurant");
+
+        jTextField1.setToolTipText("");
+
+        jLabel2.setText("User Name");
+
+        jLabel3.setText("Password");
+
+        jPasswordField1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,22 +117,36 @@ public class LocationChooser extends javax.swing.JDialog
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(locationBox, 0, 273, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(locationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(locationBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,16 +154,16 @@ public class LocationChooser extends javax.swing.JDialog
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
   {//GEN-HEADEREND:event_jButton1ActionPerformed
-    ConfigFile f = (ConfigFile) locationBox.getSelectedItem();
-    //Session.configFileName = path + f.fileName;
+     SessionManager.Restaurant selectedRestaurant = (SessionManager.Restaurant) locationBox.getSelectedItem();
+    //Session.configFileName = path + selectedRestaurant.fileName;
     //ApplicationData.readConfigurationFile();
     this.dispose();
     //this.setVisible(false);
   }//GEN-LAST:event_jButton1ActionPerformed
 
 private void locationBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationBoxActionPerformed
-   ConfigFile f = (ConfigFile) locationBox.getSelectedItem();
-   //Session.configFileName = path + f.fileName;
+    SessionManager.Restaurant selectedRestaurant = (SessionManager.Restaurant) locationBox.getSelectedItem();
+   //Session.configFileName = path + selectedRestaurant.fileName;
    //ApplicationData.readConfigurationFile();
 }//GEN-LAST:event_locationBoxActionPerformed
   
@@ -205,6 +192,10 @@ private void locationBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox locationBox;
     // End of variables declaration//GEN-END:variables
   

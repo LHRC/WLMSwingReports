@@ -4,7 +4,6 @@
 
 package wlmswingreports;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -59,29 +58,33 @@ public class LoginDialog
   public LoginDialog()
   {
     getLocation();
-    title = "Log in to Inventory System";
-    jd = new JDialog(parent, title, true);
-    //getCategories();
-    categoryBox = new JComboBox(categories);
-    jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    WindowListener wl = (WindowListener) new myWindowListener();
-    jd.addWindowListener(wl);
-//    namePanel.add(new JLabel("User Name:"));
-//    namePanel.add(nameField);
-//    passwordPanel.add(new JLabel("Password: "));
-//    passwordPanel.add(passwordField);
-    buttonPanel.add(categoryBox);
-    buttonPanel.add(login);
-    buttonPanel.add(cancel);
-    login.addActionListener(al);
-    cancel.addActionListener(al);
-    buttonPanel.setVisible(true);
-    jd.getContentPane().add(namePanel, BorderLayout.NORTH);
-    jd.getContentPane().add(passwordPanel, BorderLayout.CENTER);
-    jd.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
-    jd.pack();
-    jd.setLocationRelativeTo(null);
-    jd.setVisible(true);
+    
+    /////TODO
+    //add login validation here
+    
+//    title = "Log in to Inventory System";
+//    jd = new JDialog(parent, title, true);
+//    //getCategories();
+//    categoryBox = new JComboBox(categories);
+//    jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//    WindowListener wl = (WindowListener) new myWindowListener();
+//    jd.addWindowListener(wl);
+////    namePanel.add(new JLabel("User Name:"));
+////    namePanel.add(nameField);
+////    passwordPanel.add(new JLabel("Password: "));
+////    passwordPanel.add(passwordField);
+//    buttonPanel.add(categoryBox);
+//    buttonPanel.add(login);
+//    buttonPanel.add(cancel);
+//    login.addActionListener(al);
+//    cancel.addActionListener(al);
+//    buttonPanel.setVisible(true);
+//    jd.getContentPane().add(namePanel, BorderLayout.NORTH);
+//    jd.getContentPane().add(passwordPanel, BorderLayout.CENTER);
+//    jd.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+//    jd.pack();
+//    jd.setLocationRelativeTo(null);
+//    jd.setVisible(true);
   } /** End method LoginDialog */
   
 
