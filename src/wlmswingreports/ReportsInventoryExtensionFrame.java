@@ -79,10 +79,11 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 //    JasperReport jasperReport =
 //        JasperCompileManager.compileReport(reportSource);
 //    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
-    
+    File cr = new File(getClass().getClassLoader().getResource("InventoryExtensionReport.jasper").getFile());
+//    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
+//            loadObject(new File(compiledReport));
     JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-            loadObject(new File(compiledReport));
-
+            loadObject(cr);
     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
     //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
 
@@ -194,7 +195,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
   private DefaultTableModel invTableModel;
   DecimalFormat df = STANDARD_DECIMAL_FORMAT;
   String reportPath = "lib/reports/";
-  String compiledReport = reportPath + "InventoryExtensionReport.jasper";
+  String compiledReport = "../res/InventoryExtensionReport.jasper";
   String reportSource = reportPath + "InventoryExtensionReport.jrxml";
   String reportDest = "JasperTest.html";
   String reportName = "InventoryExtensionReport";
