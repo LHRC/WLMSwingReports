@@ -162,6 +162,7 @@ public class LocationChooser extends javax.swing.JDialog
       System.out.println(user +  " " + password);
     if(selectedRestaurant.validateRestaurantLogin(user, password)){
         SessionManager.setIsAuthenticated(Boolean.TRUE);
+        SessionManager.setActiveRestaurant(selectedRestaurant);
     }
     else{
         SessionManager.setIsAuthenticated(Boolean.FALSE);

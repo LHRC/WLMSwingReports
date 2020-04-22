@@ -23,7 +23,8 @@ public class SessionManager {
             "blueridgegrill.cxond9zlkmhk.us-east-1.rds.amazonaws.com", 
             false, "bones_wine", 0, 4, "bones", "bones1979");
     private final List restaurantList = new ArrayList(){{
-
+       BRGRDS.setDBUser("inventory");
+       BonesRDS.setDBUser("inventory");
        BRGRDS.setDBPassword("1261#Lhrc!3423.Brg");
        BonesRDS.setDBPassword("1261#Lhrc!3423.Brg");
        add(BRGRDS);
