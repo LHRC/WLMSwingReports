@@ -36,12 +36,13 @@ public class Session {
         Integer id = null;
         String sql = "select major_category_id from major_categories "
                 + "where lower(major_category_name) = 'wine' ";
-        try(Connection c = ConnectionPool.getInstance().cpds.getConnection();
+        try(Connection c = SessionManager.getConnection();
                 PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             if(rs.next())
                 id = rs.getInt(1);
-            
+            ps.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
         }
