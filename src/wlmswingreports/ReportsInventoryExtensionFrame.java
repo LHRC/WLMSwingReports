@@ -14,7 +14,6 @@ package wlmswingreports;
 import com.jasperassistant.designer.viewer.ReportViewer;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +22,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +43,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
     public ReportsInventoryExtensionFrame()
     {
       //super(mit);
-      getConnection();
+      //getConnection();
       getClearanceOnly();
       getInventoryDate();
       getReportData();
@@ -54,26 +54,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
       setUpReport();
     }
 
-  public void getConnection()
-  {
-    conn = null;
-    try
-    {
-      SessionManager.Restaurant r = SessionManager.getActiveRestaurant();
-      Class.forName("org.postgresql.Driver");
-      String URL = "jdbc:postgresql://" + r.getRestaurantDatabaseIPAddress() + "/" + r.getDbName();
-      conn = DriverManager.getConnection(URL,r.getDBUser(),r.getDBPassword());
-      
-    }
-    catch (ClassNotFoundException ex)
-    {
-      ex.printStackTrace();
-    }
-    catch (SQLException ex)
-    {
-      ex.printStackTrace();
-    }
-  }
+  
   private void exportToExcel()
   {
     int reply = JOptionPane.showConfirmDialog(null, "Export to Excel?", "Export", JOptionPane.YES_NO_OPTION);
@@ -128,8 +109,8 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 }
   private void getInventoryDate()
   {
-    //dateDialog = new InventoryDateChooserDialog(new JFrame(), true);
-    //dateDialog.setVisible(true);
+    dateDialog = new InventoryDateChooserDialog(new JFrame(), true);
+    dateDialog.setVisible(true);
   }
 
   private void getReportData()
@@ -155,41 +136,43 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
     cols.add("Extended");
   }
 
-  private void getData() throws SQLException
-  {
-     String clearanceClause = isClearanceOnly ?
-            " and pi.is_clearance = 'true' " : "";
-     //int inventoryId = dateDialog.getSelectedInventoryId();
-     int inventoryId = 960;
-     // fix this to use the correct category
-     String q = "select pi.inventory_name, id.product_cost, r.room_name, id.quantity_counted," +
-              " id.theoretical_quantity, id.product_cost * id.quantity_counted as extended" +
-              " from inventory_details id, product_instances pi, rooms r, " +
-              " product_instance_location_associations pila, products p " +
-              " where  pi.product_id = p.product_id " +
-              " and id.product_instance_location_id = pila.product_instance_location_id " +
-              " and pila.product_instance_id = pi.product_instance_id " +
-              " and pila.location_room_id = r.room_id and inventory_id = ? " +
-              " and p.major_category_id = "
-             + "(select major_category_id from major_categories where lower(major_category_name) = 'wine') " +
-              clearanceClause +
-              " order by r.room_name,pila.location_column, " +
-              " pila.location_row,  pi.inventory_name";
-    PreparedStatement ps = conn.prepareStatement(q);
-    ps.setInt(1, inventoryId);
-    ResultSet rs = ps.executeQuery();
-    while (rs.next())
-    {
-      Vector<Object> line = new Vector();
-      line.add(rs.getString("inventory_name"));
-      line.add(rs.getString("room_name"));
-      line.add(rs.getFloat("quantity_counted"));
-      line.add(rs.getFloat("theoretical_quantity"));
-      line.add(rs.getFloat("product_cost"));
-      line.add(rs.getFloat("extended"));
-      data.add(line);
+    private void getData() throws SQLException {
+        String clearanceClause = isClearanceOnly
+                ? " and pi.is_clearance = 'true' " : "";
+        String sql = "select pi.inventory_name, id.product_cost, r.room_name, id.quantity_counted,"
+                + " id.theoretical_quantity, id.product_cost * id.quantity_counted as extended"
+                + " from inventory_details id, product_instances pi, rooms r, "
+                + " product_instance_location_associations pila, products p "
+                + " where  pi.product_id = p.product_id "
+                + " and id.product_instance_location_id = pila.product_instance_location_id "
+                + " and pila.product_instance_id = pi.product_instance_id "
+                + " and pila.location_room_id = r.room_id and inventory_id = ? "
+                + " and p.major_category_id = "
+                + "(select major_category_id from major_categories where lower(major_category_name) = 'wine') "
+                + clearanceClause
+                + " order by r.room_name,pila.location_column, "
+                + " pila.location_row,  pi.inventory_name";
+        try (Connection conn = SessionManager.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            int inventoryId = dateDialog.getSelectedInventoryId();
+            //int inventoryId = 960;
+            ps.setInt(1, inventoryId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Vector<Object> line = new Vector();
+                line.add(rs.getString("inventory_name"));
+                line.add(rs.getString("room_name"));
+                line.add(rs.getFloat("quantity_counted"));
+                line.add(rs.getFloat("theoretical_quantity"));
+                line.add(rs.getFloat("product_cost"));
+                line.add(rs.getFloat("extended"));
+                data.add(line);
+            }
+            ps.close();
+            conn.close();
+        }
     }
-  }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -217,9 +200,8 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
   //static MenuItemType mit = MenuItemType.REPORTS_INVENTORY_EXTENSION;
-  //private InventoryDateChooserDialog dateDialog;
+  private InventoryDateChooserDialog dateDialog;
   //private Connection conn = ApplicationData.getConnection();
-  private Connection conn;
   private Vector<String> cols = new Vector();
   private Vector<Vector<Object>> data = new Vector();
   private DefaultTableModel invTableModel;

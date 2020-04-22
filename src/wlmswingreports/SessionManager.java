@@ -5,6 +5,9 @@
  */
 package wlmswingreports;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +73,28 @@ public class SessionManager {
     public static Restaurant getActiveRestaurant(){
         return activeRestaurant;
     }
-    
+       
+   public static Connection getConnection()
+  {
+    Connection conn = null;
+    try
+    {
+      SessionManager.Restaurant r = SessionManager.getActiveRestaurant();
+      Class.forName("org.postgresql.Driver");
+      String URL = "jdbc:postgresql://" + r.getRestaurantDatabaseIPAddress() + "/" + r.getDbName();
+      conn = DriverManager.getConnection(URL,r.getDBUser(),r.getDBPassword());
+      
+    }
+    catch (ClassNotFoundException ex)
+    {
+      ex.printStackTrace();
+    }
+    catch (SQLException ex)
+    {
+      ex.printStackTrace();
+    }
+    return conn;
+  }    
         public class Restaurant{
             private String restaurantName;
             private int restaurantID;
