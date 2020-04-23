@@ -86,6 +86,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 //        JasperCompileManager.compileReport(reportSource);
 //    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
       File cr;
+       cr = new File("/lib/InventoryExtensionReport.jasper");
       if ( getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper") != null){
         cr = new File(getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper").getFile());
       }else{
