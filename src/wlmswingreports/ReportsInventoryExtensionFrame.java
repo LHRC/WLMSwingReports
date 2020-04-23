@@ -13,6 +13,7 @@ package wlmswingreports;
 
 import com.jasperassistant.designer.viewer.ReportViewer;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,17 +87,23 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 //        JasperCompileManager.compileReport(reportSource);
 //    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
       File cr;
-       cr = new File("/lib/InventoryExtensionReport.jasper");
-      if ( getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper") != null){
-        cr = new File(getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper").getFile());
-      }else{
-        cr = new File("c:/reports/InventoryExtensionReport.jasper");
-      }
+      InputStream jasper1 = getClass().getResourceAsStream("InventoryExtensionReport.jasper");
+//       cr = new File("/lib/InventoryExtensionReport.jasper");
+//      if ( getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper") != null){
+//        cr = new File(getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper").getFile());
+//      }else{
+//        cr = new File("c:/reports/InventoryExtensionReport.jasper");
+//      }
 //    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
 //            loadObject(new File(compiledReport));
+
     JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-            loadObject(cr);
+            loadObject(jasper1);
+//JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
+//            loadObject(cr);
     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
+
+
     //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
 
     //JasperExportManager.exportReportToHtmlFile(jasperPrint, reportDest);
@@ -105,6 +112,7 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
 
   catch (JRException ex)
   {
+      JOptionPane.showMessageDialog(rootPane, ex.getMessage());
     ex.printStackTrace();
   }
 }

@@ -21,8 +21,11 @@ public class WLMSwingReports {
      */
     public static void main(String[] args) {
 
-        if(login()){
-           // ConnectionPool.getInstance().connect(SessionManager.getActiveRestaurant());
+        if(login() ){
+        //if(true){
+            // ConnectionPool.getInstance().connect(SessionManager.getActiveRestaurant());
+            
+            //SessionManager.setActiveRestaurant(SessionManager.getRestaurants().get(0));
             createAndShowGUI();
         }
         else{
