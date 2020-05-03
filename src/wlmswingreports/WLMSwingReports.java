@@ -7,6 +7,7 @@ package wlmswingreports;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -29,7 +30,7 @@ public class WLMSwingReports {
             createAndShowGUI();
         }
         else{
-            System.out.println("nope");
+            JOptionPane.showMessageDialog(null, "Login Credentials not Correct");
         }
     }
     
