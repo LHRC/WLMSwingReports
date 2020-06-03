@@ -195,7 +195,11 @@ public class InventoryPhysicalCountFrame extends JInternalFrame
                     v.add("$" + STANDARD_DECIMAL_FORMAT.format(up).toString());
                     //Float t = tm.getTheoreticalByLocationID(rs.getInt("product_instance_location_id"));
                     Float t = tm.getTheoreticalByProductInstanceLocationID(rs.getInt("product_instance_location_id"));
-                    v.add(STANDARD_DECIMAL_FORMAT.format(t).toString());
+                    System.out.println(t);
+                    if(t == null)
+                        v.add("");
+                    else
+                        v.add(STANDARD_DECIMAL_FORMAT.format(t).toString());
                     d.add(v);
                 }
                 ps.close();
