@@ -19,10 +19,10 @@ public class SessionManager {
     private static Boolean isAuthenticated = true;
     private static Integer restaurantID = null;
     private static Boolean test = true;
-    Restaurant BRGRDS = new Restaurant("BRG Remote - Test", 1 , 
+    Restaurant BRGRDS = new Restaurant("Blue Ridge Grill", 1 , 
             "blueridgegrill.cxond9zlkmhk.us-east-1.rds.amazonaws.com", 
             false, "brg_wine", 2000, 3, "brg", "brg1995");
-    Restaurant BonesRDS = new Restaurant("Bones Remote - Test", 2 , 
+    Restaurant BonesRDS = new Restaurant("Bones", 2 , 
             "blueridgegrill.cxond9zlkmhk.us-east-1.rds.amazonaws.com", 
             false, "bones_wine", 0, 4, "bones", "bones1979");
     private final List restaurantList = new ArrayList(){{
