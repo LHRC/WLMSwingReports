@@ -206,6 +206,7 @@ public class InventoryPhysicalCountFrame extends JInternalFrame
                 conn.close();
             } catch (SQLException ex) {
             Logger.getLogger(InventoryPhysicalCountFrame.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
             return d;
         }
