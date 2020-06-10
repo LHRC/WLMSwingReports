@@ -149,11 +149,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_productLocationsActionPerformed
 
     private void salesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesActionPerformed
-        // TODO add your handling code here:
+       ReportsSalesPeriodCategoryFrame rspcf = new ReportsSalesPeriodCategoryFrame(); 
     }//GEN-LAST:event_salesActionPerformed
 
     private void invoicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoicesActionPerformed
-        // TODO add your handling code here:
+       ReportsPurchasesPeriodCategoryFrame rppcf = new ReportsPurchasesPeriodCategoryFrame();
     }//GEN-LAST:event_invoicesActionPerformed
 
     private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed

@@ -6,6 +6,7 @@ package wlmswingreports;
 
 import com.jasperassistant.designer.viewer.ReportViewer;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,15 +74,18 @@ public class InventoryPhysicalCountFrame extends JInternalFrame
 //      JasperCompileManager.compileReportToFile(reportSource, compiledReport);
       // ****************
 
-      File cr;
-      if ( getClass().getClassLoader().getResource("res/InventoryPhysicalCountReport.jasper") != null){
-        cr = new File(getClass().getClassLoader().getResource("res/InventoryPhysicalCountReport.jasper").getFile());
-      }else{
-        cr = new File("c:/reports/InventoryPhysicalCountReport.jasper");
-      }
+//      File cr;
+//      if ( getClass().getClassLoader().getResource("res/InventoryPhysicalCountReport.jasper") != null){
+//        cr = new File(getClass().getClassLoader().getResource("res/InventoryPhysicalCountReport.jasper").getFile());
+//      }else{
+//        cr = new File("c:/reports/InventoryPhysicalCountReport.jasper");
+//      }
       //   *UNCOMMENT THIS SECTION FOR PRODUCTION CODE  *
+      InputStream jasper1 = getClass().getResourceAsStream("InventoryPhysicalCountReport.jasper");
       JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-      loadObject(cr);
+            loadObject(jasper1);
+//      JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
+//      loadObject(cr);
       // *****************
       
       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
