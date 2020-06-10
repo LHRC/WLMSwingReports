@@ -145,7 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_inventoryExtensionActionPerformed
 
     private void productLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productLocationsActionPerformed
-        // TODO add your handling code here:
+        ReportsMiscProductLocationsFrame lmplf = new ReportsMiscProductLocationsFrame();
     }//GEN-LAST:event_productLocationsActionPerformed
 
     private void salesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesActionPerformed
@@ -157,7 +157,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_invoicesActionPerformed
 
     private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed
-        // TODO add your handling code here:
+       ReportsMiscOrderFrame rmof = new ReportsMiscOrderFrame();
     }//GEN-LAST:event_ordersActionPerformed
 
     /**
