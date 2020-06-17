@@ -192,7 +192,8 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
   private DefaultTableModel invTableModel;
   DecimalFormat df = STANDARD_DECIMAL_FORMAT;
   String reportPath = "lib/reports/";
-  String compiledReport = "../res/InventoryExtensionReport.jasper";
+  //String compiledReport = "../res/InventoryExtensionReport.jasper";
+  String compiledReport = "InventoryExtensionReport.jasper";
   String reportSource = reportPath + "InventoryExtensionReport.jrxml";
   String reportDest = "JasperTest.html";
   String reportName = "InventoryExtensionReport";
