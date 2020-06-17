@@ -36,12 +36,21 @@ public class MainFrame extends javax.swing.JFrame {
         countSheet = new javax.swing.JMenuItem();
         inventoryExtension = new javax.swing.JMenuItem();
         productLocations = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         salesMenu = new javax.swing.JMenu();
         sales = new javax.swing.JMenuItem();
         purchaseMenu = new javax.swing.JMenu();
         invoices = new javax.swing.JMenuItem();
         ordersMenu = new javax.swing.JMenu();
         orders = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.window);
@@ -72,6 +81,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         inventoryMenu.add(productLocations);
+
+        jMenuItem1.setText("Inventory Variance");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventoryVarianceActionPerformed(evt);
+            }
+        });
+        inventoryMenu.add(jMenuItem1);
 
         jMenuBar1.add(inventoryMenu);
 
@@ -112,6 +129,66 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(ordersMenu);
 
+        jMenu1.setText("Wine List");
+
+        jMenuItem2.setText("BTG List");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListBTGActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Club List");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListClubListActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem8.setText("Large / Small Format");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListLargeSmallFormatActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuItem4.setText("By Category");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListByCategoryActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("By Distributor");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListByDistributorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("By Bin Number");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListByBinNumberActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("New Items");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineListNewProductsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,14 +211,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void inventoryExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryExtensionActionPerformed
             ReportsInventoryExtensionFrame rief = new ReportsInventoryExtensionFrame();
-//        try {
-//            ReportsInventoryExtensionFrame rief = new ReportsInventoryExtensionFrame();
-//            rief.setVisible(true);
-//            add(rief);
-//            rief.setMaximum(true);
-//        } catch (PropertyVetoException ex) {
-//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }//GEN-LAST:event_inventoryExtensionActionPerformed
 
     private void productLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productLocationsActionPerformed
@@ -159,6 +228,38 @@ public class MainFrame extends javax.swing.JFrame {
     private void ordersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersActionPerformed
        ReportsMiscOrderFrame rmof = new ReportsMiscOrderFrame();
     }//GEN-LAST:event_ordersActionPerformed
+
+    private void inventoryVarianceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryVarianceActionPerformed
+        ReportsInventoryDiscrepanciesFrame ridf = new ReportsInventoryDiscrepanciesFrame();
+    }//GEN-LAST:event_inventoryVarianceActionPerformed
+
+    private void wineListBTGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListBTGActionPerformed
+        ReportsWineListBTGFrame rwlbtgf = new ReportsWineListBTGFrame();
+    }//GEN-LAST:event_wineListBTGActionPerformed
+
+    private void wineListClubListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListClubListActionPerformed
+        ReportsWineListClubListFrame rwlclf = new ReportsWineListClubListFrame();
+    }//GEN-LAST:event_wineListClubListActionPerformed
+
+    private void wineListByCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListByCategoryActionPerformed
+        ReportsWineListByCategoryFrame rwlbcf = new ReportsWineListByCategoryFrame();
+    }//GEN-LAST:event_wineListByCategoryActionPerformed
+
+    private void wineListByDistributorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListByDistributorActionPerformed
+        ReportsWineListByDistributorFrame rwlbdf = new ReportsWineListByDistributorFrame();
+    }//GEN-LAST:event_wineListByDistributorActionPerformed
+
+    private void wineListByBinNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListByBinNumberActionPerformed
+        ReportsWineListByBinFrame rwlbbnf = new ReportsWineListByBinFrame();
+    }//GEN-LAST:event_wineListByBinNumberActionPerformed
+
+    private void wineListNewProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListNewProductsActionPerformed
+        ReportsWineListNewProductsFrame rwlnp = new ReportsWineListNewProductsFrame();
+    }//GEN-LAST:event_wineListNewProductsActionPerformed
+
+    private void wineListLargeSmallFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineListLargeSmallFormatActionPerformed
+        ReportsWineListLargeSmallFormatFrame rwllsff = new ReportsWineListLargeSmallFormatFrame();
+    }//GEN-LAST:event_wineListLargeSmallFormatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,7 +303,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem inventoryExtension;
     private javax.swing.JMenu inventoryMenu;
     private javax.swing.JMenuItem invoices;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem orders;
     private javax.swing.JMenu ordersMenu;
     private javax.swing.JMenuItem productLocations;

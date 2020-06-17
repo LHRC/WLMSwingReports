@@ -112,7 +112,7 @@ public class TheoreticalCountMap {
 
 
     
-    //TODO this needs null checking in case no location id
+    //changed 6/17/2020 to return 0, not null
     public Float getTheoreticalByProductInstanceID(Integer id) {
         if(productInstanceMap.containsKey(id)){
             float sum = 0.0f;
@@ -120,7 +120,7 @@ public class TheoreticalCountMap {
                 sum += getTheoreticalByProductInstanceLocationID(i);
             }
             return sum;
-        } else return null;
+        } else return 0.0f;
     }
     
     public Float getProductInstanceTotalTheoreticalByProductInstanceLocationID(Integer id){

@@ -79,43 +79,19 @@ public class ReportsInventoryExtensionFrame extends JInternalFrame
     params.put("CATEGORY_NAME", "Wine");
   }
 
-  private void setUpReport()
-  {
-  try
-  {
-//    JasperReport jasperReport =
-//        JasperCompileManager.compileReport(reportSource);
-//    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
-      File cr;
-      InputStream jasper1 = getClass().getResourceAsStream("InventoryExtensionReport.jasper");
-//       cr = new File("/lib/InventoryExtensionReport.jasper");
-//      if ( getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper") != null){
-//        cr = new File(getClass().getClassLoader().getResource("res/InventoryExtensionReport.jasper").getFile());
-//      }else{
-//        cr = new File("c:/reports/InventoryExtensionReport.jasper");
-//      }
-//    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-//            loadObject(new File(compiledReport));
-
-    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-            loadObject(jasper1);
-//JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-//            loadObject(cr);
-    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
-
-
-    //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
-
-    //JasperExportManager.exportReportToHtmlFile(jasperPrint, reportDest);
-    JasperViewer.viewReport(jasperPrint, false);
-  }
-
-  catch (JRException ex)
-  {
-      JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-    ex.printStackTrace();
-  }
-}
+    private void setUpReport() {
+        try {
+            InputStream jasper1 = getClass().getResourceAsStream(compiledReport);
+            JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
+                    loadObject(jasper1);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    
   private void getInventoryDate()
   {
     dateDialog = new InventoryDateChooserDialog(new JFrame(), true);

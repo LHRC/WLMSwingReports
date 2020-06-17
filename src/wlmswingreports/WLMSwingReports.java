@@ -6,6 +6,7 @@
 package wlmswingreports;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -17,6 +18,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class WLMSwingReports {
 
+    public static DecimalFormat STANDARD_DECIMAL_FORMAT = new DecimalFormat("#,##0.00");
     /**
      * @param args the command line arguments
      */

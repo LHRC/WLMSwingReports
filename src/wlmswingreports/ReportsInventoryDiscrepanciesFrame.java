@@ -8,12 +8,14 @@ package wlmswingreports;
 
 import com.jasperassistant.designer.viewer.ReportViewer;
 import java.io.File;
+import java.io.InputStream;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -53,7 +55,7 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
     {
       getData();
       rds = new ReportDataSource(cols, data);
-      exportToExcel();
+      //exportToExcel();
       setupReport();
       conn.close();
     }
@@ -78,14 +80,11 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
   
   private void setupReport() throws JRException
   {
-//    JasperReport jasperReport =
-//        JasperCompileManager.compileReport(reportSource);
-//    JasperCompileManager.compileReportToFile(reportSource, compiledReport);
-    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
-            loadObject(new File(compiledReport));
 
+    InputStream jasper1 = getClass().getResourceAsStream("InventoryDiscrepanciesReport.jasper");
+    JasperReport jasperReport = (JasperReport) net.sf.jasperreports.engine.util.JRLoader.
+            loadObject(jasper1);
     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
-    //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, rds);
 
     JasperViewer.viewReport(jasperPrint, false);
   }
@@ -99,7 +98,8 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
   
   private void getTheoreticals()
   {
-   // theoMap = new TheoreticalCountMap(new SimpleDate(dateDialog.getSelectedDate()));
+    //theoMap = new TheoreticalCountMap(new SimpleDate(dateDialog.getSelectedDate()));
+    //theoMap = new TheoreticalCountMap(dateDialog.getSelectedDate().toLocalDate());
   }
 
   private void getCols()
@@ -121,34 +121,36 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
   private void getData() throws SQLException
   {
      int inventoryId = dateDialog.getSelectedInventoryId();
-     
      // fix this to use the correct category
      String q = "select pi.product_instance_id, pi.inventory_name, id.product_cost, " +
-              "sum(id.quantity_counted) as sum_quantity " +
+              "sum(id.quantity_counted) as sum_quantity, " +
+               "sum(theoretical_quantity) as theo " +
               "from inventory_details id, product_instances pi, " +
               "product_instance_location_associations pila, products p " +
               "where  pi.product_id = p.product_id " +
               "and id.product_instance_location_id = pila.product_instance_location_id " +
               "and pila.product_instance_id = pi.product_instance_id " +
               "and inventory_id = ? " +
-              "and p.major_category_id = ? " +
+              //"and p.major_category_id = ? " +
               "group by pi.product_instance_id, pi.inventory_name, id.product_cost " +
               "order by pi.inventory_name";
  
       PreparedStatement ps = conn.prepareStatement(q);
       ps.setInt(1, inventoryId);
-      ps.setInt(2, Session.getWineMajorCategoryId());
+      //ps.setInt(2, Session.getWineMajorCategoryId());
       ResultSet rs = ps.executeQuery();
       while (rs.next())
       {
         Vector<Object> line = new Vector();
         String iName = rs.getString("inventory_name");
         Integer pid = rs.getInt("product_instance_id");
-        Float theo = theoMap.getTheoreticalByProductInstanceID(pid);
+        //Float theo = theoMap.getTheoreticalByProductInstanceID(pid);                
+        Float theo = rs.getFloat("theo");
         Float qc = rs.getFloat("sum_quantity");
         Float pCost = rs.getFloat("product_cost");
         Float d = theo - qc;
         Float ext = d * pCost;
+        //System.out.println(iName + qc + theo);
         line.add(iName);
         line.add(qc);
         line.add(theo);
@@ -157,7 +159,7 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
         line.add(ext);
         if (d != 0)
         {
-          data.add(line);
+            data.add(line);
         }
       }
       Comparator c = new Comparator()
@@ -210,11 +212,7 @@ public class ReportsInventoryDiscrepanciesFrame extends JInternalFrame
   private Vector<Vector<Object>> data = new Vector();
   private InventoryDateChooserDialog dateDialog;
  
-    DecimalFormat df = ApplicationData.STANDARD_DECIMAL_FORMAT;
-  String reportPath = "lib/reports/";
-  String compiledReport = reportPath + "InventoryDiscrepanciesReport.jasper";
-  String reportSource = reportPath + "InventoryDiscrepanciesReport.jrxml";
-  String reportName = "InventoryExceptionReport";
+  DecimalFormat df = new DecimalFormat("#,##0.00");
   Map<String, Object> params = new HashMap<String, Object>();
   ReportViewer rv = new ReportViewer();
   JasperReport jr = null;
