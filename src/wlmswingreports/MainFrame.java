@@ -37,6 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         inventoryExtension = new javax.swing.JMenuItem();
         productLocations = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        periodCostMenuItem = new javax.swing.JRadioButtonMenuItem();
         salesMenu = new javax.swing.JMenu();
         sales = new javax.swing.JMenuItem();
         purchaseMenu = new javax.swing.JMenu();
@@ -89,6 +90,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         inventoryMenu.add(jMenuItem1);
+
+        periodCostMenuItem.setText("Period Cost");
+        periodCostMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                periodCostMenuItemActionPerformed(evt);
+            }
+        });
+        inventoryMenu.add(periodCostMenuItem);
 
         jMenuBar1.add(inventoryMenu);
 
@@ -261,6 +270,10 @@ public class MainFrame extends javax.swing.JFrame {
         ReportsWineListLargeSmallFormatFrame rwllsff = new ReportsWineListLargeSmallFormatFrame();
     }//GEN-LAST:event_wineListLargeSmallFormatActionPerformed
 
+    private void periodCostMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodCostMenuItemActionPerformed
+        ReportsCostPeriodFrame rcpf = new ReportsCostPeriodFrame();
+    }//GEN-LAST:event_periodCostMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -315,6 +328,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem orders;
     private javax.swing.JMenu ordersMenu;
+    private javax.swing.JRadioButtonMenuItem periodCostMenuItem;
     private javax.swing.JMenuItem productLocations;
     private javax.swing.JMenu purchaseMenu;
     private javax.swing.JMenuItem sales;
