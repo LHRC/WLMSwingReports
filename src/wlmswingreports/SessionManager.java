@@ -8,6 +8,7 @@ package wlmswingreports;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
  * @author mdonovan
  */
 public class SessionManager {
+    public static DecimalFormat standardDecimalFormat = new DecimalFormat("#,##0.00");
+    public static final Integer LOW_LIST_CUTOFF = 5; 
     private static Boolean isAuthenticated = true;
     private static Integer restaurantID = null;
     private static Boolean test = true;

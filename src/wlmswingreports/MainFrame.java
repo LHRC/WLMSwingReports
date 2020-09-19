@@ -52,6 +52,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        noStoriesMenuItem = new javax.swing.JMenuItem();
+        noImagesMenuItem = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        LowListMenuItem = new javax.swing.JMenuItem();
+        javax.swing.JMenuItem wineStoriesMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.SystemColor.window);
@@ -196,7 +201,44 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem7);
 
+        noStoriesMenuItem.setText("No Stories");
+        noStoriesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noStoriesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(noStoriesMenuItem);
+
+        noImagesMenuItem.setText("No Images");
+        noImagesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noImagesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(noImagesMenuItem);
+
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Misc");
+        jMenu2.setToolTipText("");
+
+        LowListMenuItem.setText("Low List");
+        LowListMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LowListActionPerformed(evt);
+            }
+        });
+        jMenu2.add(LowListMenuItem);
+
+        wineStoriesMenuItem.setText("Wine Stories");
+        wineStoriesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineStoriesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(wineStoriesMenuItem);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -274,6 +316,22 @@ public class MainFrame extends javax.swing.JFrame {
         ReportsCostPeriodFrame rcpf = new ReportsCostPeriodFrame();
     }//GEN-LAST:event_periodCostMenuItemActionPerformed
 
+    private void LowListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LowListActionPerformed
+        ReportsMiscLowListFrame rmllf = new ReportsMiscLowListFrame();
+    }//GEN-LAST:event_LowListActionPerformed
+
+    private void wineStoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineStoriesActionPerformed
+        ReportsMiscWineStoriesFrame rmwsf = new ReportsMiscWineStoriesFrame();
+    }//GEN-LAST:event_wineStoriesActionPerformed
+
+    private void noStoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noStoriesActionPerformed
+        ReportsWineListNoStoriesFrame rwlnsf = new ReportsWineListNoStoriesFrame();
+    }//GEN-LAST:event_noStoriesActionPerformed
+
+    private void noImagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noImagesActionPerformed
+        ReportsWineListNoImagesFrame rwlnif = new ReportsWineListNoImagesFrame();
+    }//GEN-LAST:event_noImagesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,11 +370,13 @@ public class MainFrame extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem LowListMenuItem;
     private javax.swing.JMenuItem countSheet;
     private javax.swing.JMenuItem inventoryExtension;
     private javax.swing.JMenu inventoryMenu;
     private javax.swing.JMenuItem invoices;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -326,6 +386,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem noImagesMenuItem;
+    private javax.swing.JMenuItem noStoriesMenuItem;
     private javax.swing.JMenuItem orders;
     private javax.swing.JMenu ordersMenu;
     private javax.swing.JRadioButtonMenuItem periodCostMenuItem;
