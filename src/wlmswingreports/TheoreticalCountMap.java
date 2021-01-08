@@ -129,7 +129,7 @@ public class TheoreticalCountMap {
     }
     
     public Float getTheoreticalByProductInstanceLocationID(Integer id){
-        return locationMap.containsKey(id) ? locationMap.get(id).theoreticalOnHand : null;
+        return locationMap.containsKey(id) ? locationMap.get(id).theoreticalOnHand : 0f;
     }
 
     public TheoreticalCountMap.ProductInstanceLocationRecord getAllDataForProductInstanceLocationID(Integer id){
